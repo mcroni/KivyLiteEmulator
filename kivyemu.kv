@@ -69,16 +69,4 @@
 
 
 <HistoryScreen>:
-    BoxLayout:
-        orientation: "vertical"
-        MDToolbar:
-            id: toolbar
-            title: 'KivyEmu'
-            md_bg_color: app.theme_cls.primary_color
-            background_palette: 'Primary'
-            background_hue: '500'
-            elevation: 10
-            right_action_items:
-                [['menu', lambda x:app.show_example_bottom_sheet()]]
-        Button:
-            text: "Welcome to history"
+    on_pre_enter: root.build_screen()

@@ -1,5 +1,12 @@
 import os
 import sys
+
+from kivy.storage.jsonstore import JsonStore
+from kivy.uix.button import Button
+from kivy.uix.scrollview import ScrollView
+
+from kivymd.list import MDList
+
 original_argv = sys.argv
 import traceback
 from fnmatch import fnmatch
@@ -18,27 +25,39 @@ from kivy.resources import resource_add_path, resource_remove_path
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.screenmanager import Screen
 from monotonic import monotonic
-
+from kivy.uix.scrollview import ScrollView
 from kivymd.theming import ThemeManager
 from plyer import filechooser
 
+history = JsonStore("history.json")
 
 class EmulatorScreen(Screen):
     pass
 
 
+
+
+
 class HistoryScreen(Screen):
-    pass
+    def build_screen(self):
+        scrollview = ScrollView(do_scroll_x = False)
+        md_list = MDList()
+        scrollview.add_widget(md_list)
+        for i in range(1,8):
+            b = Button(text = str(i))
+            md_list.add_widget(b)
+        print("building screen for history")
+        self.add_widget(scrollview)
 
 
 class EmuInterface(FloatLayout):
     pass
 
 
-
 def toast(text):
     from kivymd.toast.kivytoast import toast
     toast(text)
+
 
 class KivyEmu(App):
     theme_cls = ThemeManager()
@@ -619,6 +638,7 @@ class KivyEmu(App):
         print(self.filename)
         self.root.ids.emulator_screen.clear_widgets()
         self.root.ids.history_screen.clear_widgets()
+
         self.root.ids.screen_manager.current = "history_screen"
 
 
