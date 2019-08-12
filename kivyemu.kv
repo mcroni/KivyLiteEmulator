@@ -1,0 +1,52 @@
+#:import OneLineIconListItem kivymd.list.OneLineIconListItem
+#:import images_path kivymd.images_path
+#:import MDTextFieldRect kivymd.textfields.MDTextField
+#:import MDIconButton kivymd.button.MDIconButton
+#:import MDDropdownMenu kivymd.menus.MDDropdownMenu
+#:import MDList kivymd.list.MDList
+#:import OneLineListItem kivymd.list.OneLineListItem
+#:import TwoLineListItem kivymd.list.TwoLineListItem
+#:import ThreeLineListItem kivymd.list.ThreeLineListItem
+#:import OneLineAvatarListItem kivymd.list.OneLineAvatarListItem
+#:import OneLineIconListItem kivymd.list.OneLineIconListItem
+#:import OneLineAvatarIconListItem kivymd.list.OneLineAvatarIconListItem
+#:import MDTabsBase kivymd.tabs.MDTabsBase
+#:import MDTabs kivymd.tabs.MDTabs
+#:import MDRaisedButton kivymd.button.MDRaisedButton
+#:import MDTextFieldRect kivymd.textfields.MDTextFieldRect
+#:import MDTextFieldClear kivymd.textfields.MDTextFieldClear
+#:import MDTextField kivymd.textfields.MDTextField
+#:import MDTextFieldRound kivymd.textfields.MDTextFieldRound
+#:import MDRaisedButton kivymd.button.MDRaisedButton
+#:import MDLabel kivymd.label.MDLabel
+#:import MDToolbar kivymd.toolbar.MDToolbar
+#:import NavigationDrawerToolbar kivymd.navigationdrawer.NavigationDrawerToolbar
+#:import NavigationLayout kivymd.navigationdrawer.NavigationLayout
+#:import MDSpinner kivymd.spinner.MDSpinner
+#: import get_color_from_hex kivy.utils.get_color_from_hex
+
+<EmuInterface>:
+    screen_manager:screen_manager
+    emulator_screen:emulator_screen
+    Image:
+        source: './assets/android_lolipop1.png'
+    BoxLayout:
+        id: box_man
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5129}
+        size_hint: 0.9, 0.8
+        ScreenManager:
+            id:screen_manager
+            EmulatorScreen:
+                id: emulator_screen
+                name: "emulator_screen"
+                MDFloatingActionButton:
+                    id:chevron_up
+                    icon: 'file'
+                    opacity: 0.9
+                    pos_hint:  {'center_x': 0.8, 'center_y': 0.1}
+                    size_hint: None, None
+                    size: dp(55), dp(55)
+                    on_press:app.choose()
+
+
+

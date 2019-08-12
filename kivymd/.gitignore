@@ -1,0 +1,7 @@
+*.pyc
+*.swp
+.buildozer
+.idea
+build
+docs/_build
+demos/kitchen_sink/bin
