@@ -14,7 +14,9 @@
 <br />
     <p>
     <a href="">
-    <img src="assets/kivyemu.PNG" alt="Logo"  height="80">
+    <img src="assets/kivyemu.PNG" alt="Logo"  height="600">
+    <img src="assets/kivyemu2.PNG" alt="Logo"  height="600">
+    <img src="assets/kivyemu.gif" alt="Logo"  height="600">
   </a>
     </p>
 
