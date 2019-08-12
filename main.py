@@ -22,7 +22,6 @@ from monotonic import monotonic
 from kivymd.theming import ThemeManager
 from plyer import filechooser
 
-from kaki.app import App as ReloaderApp
 
 
 class EmulatorScreen(Screen):
@@ -37,7 +36,7 @@ class KivyEmu(App):
     theme_cls = ThemeManager()
     theme_cls.primary_palette = 'Indigo'
     theme_cls.accent_palette = 'Indigo'
-    Window.size = (300, 600)
+    Window.size = (300, 650)
     filename = None
     class_name = None
     selection = ListProperty([])

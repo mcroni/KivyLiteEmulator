@@ -26,27 +26,42 @@
 #: import get_color_from_hex kivy.utils.get_color_from_hex
 
 <EmuInterface>:
-    screen_manager:screen_manager
-    emulator_screen:emulator_screen
+#    screen_manager:screen_manager
+#    emulator_screen:emulator_screen
     Image:
         source: './assets/android_lolipop1.png'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.46}
+
     BoxLayout:
-        id: box_man
-        pos_hint: {'center_x': 0.5, 'center_y': 0.5129}
-        size_hint: 0.9, 0.8
-        ScreenManager:
-            id:screen_manager
-            EmulatorScreen:
-                id: emulator_screen
-                name: "emulator_screen"
-                MDFloatingActionButton:
-                    id:chevron_up
-                    icon: 'file'
-                    opacity: 0.9
-                    pos_hint:  {'center_x': 0.8, 'center_y': 0.1}
-                    size_hint: None, None
-                    size: dp(55), dp(55)
-                    on_press:app.choose()
+        orientation: "vertical"
+        MDToolbar:
+            id: toolbar
+            title: 'KivyEmu'
+            md_bg_color: app.theme_cls.primary_color
+            background_palette: 'Primary'
+            background_hue: '500'
+            elevation: 10
+            right_action_items:
+                [['menu', lambda x: print("caller")]]
+        BoxLayout:
+            id: box_man
+            FloatLayout
+                BoxLayout:
+                    size_hint: .926,.8325
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.525}
+                    ScreenManager:
+                        id:screen_manager
+                        EmulatorScreen:
+                            id: emulator_screen
+                            name: "emulator_screen"
+                            MDFloatingActionButton:
+                                id:chevron_up
+                                icon: 'file'
+                                opacity: 0.9
+                                pos_hint:  {'center_x': 0.8, 'center_y': 0.1}
+                                size_hint: None, None
+                                size: dp(55), dp(55)
+                                on_press:app.choose()
 
 
 
