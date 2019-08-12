@@ -616,7 +616,10 @@ class KivyEmu(App):
         self.bs_menu_1.open()
 
     def history_screen(self):
-        pass
+        print(self.filename)
+        self.root.ids.emulator_screen.clear_widgets()
+        self.root.ids.history_screen.clear_widgets()
+        self.root.ids.screen_manager.current = "history_screen"
 
 
 if __name__ == '__main__':
