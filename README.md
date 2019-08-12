@@ -34,7 +34,9 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
+<a href="https://github.com/othneildrew/Best-README-Template">
+    <img src="assets/kivyemu.PNG" alt="Logo" width="80" height="80">
+  </a>
 Kivy is an awesome framework for creating GUI apps. However it lacks one of the most sought after features of a GUI framework which is an 
 autoreloader. We are currently working on a kivystudio but i feel i dont need another editor to write my codes in, i just need something
 to display my UI in realtime.

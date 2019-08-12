@@ -1,6 +1,8 @@
 import os
 import sys
 
+# os.system('set DEBUG=1')
+# print("setting debugger to true for auto reload")
 from kivy.storage.jsonstore import JsonStore
 from kivy.uix.button import Button
 from kivy.uix.image import AsyncImage
@@ -463,6 +465,7 @@ class KivyEmu(App):
 
     def clear(self):
         try:
+            print("clearing screen")
             self.root.ids.emulator_screen.clear_widgets()
             Window.borderless = True
             Clock.schedule_once(self.watchdog_reloader, 2)
