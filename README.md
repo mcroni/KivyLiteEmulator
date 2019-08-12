@@ -42,8 +42,7 @@
 ## About The Project
 
 Kivy is an awesome framework for creating GUI apps. However it lacks one of the most sought after features of a GUI framework which is an 
-autoreloader. We are currently working on a kivystudio but i feel i dont need another editor to write my codes in, i just need something
-to display my UI in realtime.
+autoreloader. We are currently working on a kivystudio. Before releasing a stable version,  i just need something to help me display my UI in realtime.
 
 This currently works with some of the apps i have created, it seems it is scared of bigger projects,:smile: lol,
 
