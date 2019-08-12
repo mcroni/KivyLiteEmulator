@@ -26,8 +26,8 @@
 #: import get_color_from_hex kivy.utils.get_color_from_hex
 
 <EmuInterface>:
-#    screen_manager:screen_manager
-#    emulator_screen:emulator_screen
+    screen_manager:screen_manager
+    emulator_screen:emulator_screen
     Image:
         source: './assets/android_lolipop1.png'
         pos_hint: {'center_x': 0.5, 'center_y': 0.46}
@@ -42,7 +42,7 @@
             background_hue: '500'
             elevation: 10
             right_action_items:
-                [['menu', lambda x: print("caller")]]
+                [['menu', lambda x:app.show_example_bottom_sheet()]]
         BoxLayout:
             id: box_man
             FloatLayout
@@ -54,14 +54,14 @@
                         EmulatorScreen:
                             id: emulator_screen
                             name: "emulator_screen"
-                            MDFloatingActionButton:
-                                id:chevron_up
-                                icon: 'file'
-                                opacity: 0.9
-                                pos_hint:  {'center_x': 0.8, 'center_y': 0.1}
-                                size_hint: None, None
-                                size: dp(55), dp(55)
-                                on_press:app.choose()
+#                            MDFloatingActionButton:
+#                                id:chevron_up
+#                                icon: 'file'
+#                                opacity: 0.9
+#                                pos_hint:  {'center_x': 0.8, 'center_y': 0.1}
+#                                size_hint: None, None
+#                                size: dp(55), dp(55)
+#                                on_press:app.choose()
 
 
 

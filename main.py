@@ -23,14 +23,22 @@ from kivymd.theming import ThemeManager
 from plyer import filechooser
 
 
-
 class EmulatorScreen(Screen):
+    pass
+
+
+class HistoryScreen(Screen):
     pass
 
 
 class EmuInterface(FloatLayout):
     pass
 
+
+
+def toast(text):
+    from kivymd.toast.kivytoast import toast
+    toast(text)
 
 class KivyEmu(App):
     theme_cls = ThemeManager()
@@ -40,6 +48,7 @@ class KivyEmu(App):
     filename = None
     class_name = None
     selection = ListProperty([])
+    bs_menu_1 = None
     # reloader = ReloaderApp()
 
     AUTORELOADER_PATHS = [
@@ -412,16 +421,19 @@ class KivyEmu(App):
         self.clear()
 
     def clear(self):
-        self.root.ids.emulator_screen.clear_widgets()
-        Window.borderless = True
-        Clock.schedule_once(self.watchdog_reloader, 2)
-        self.filename = str(self.selection[0])
-        base = "\\".join(self.filename.split("\\")[:-1])
-        print(base)
-        self.AUTORELOADER_PATHS.clear()
-        self.AUTORELOADER_PATHS.append((base, {"recursive": True}))
-        self.emulate_file(self.selection[0])
-        print(self.AUTORELOADER_PATHS)
+        try:
+            self.root.ids.emulator_screen.clear_widgets()
+            Window.borderless = True
+            Clock.schedule_once(self.watchdog_reloader, 2)
+            self.filename = str(self.selection[0])
+            base = "\\".join(self.filename.split("\\")[:-1])
+            print(base)
+            self.AUTORELOADER_PATHS.clear()
+            self.AUTORELOADER_PATHS.append((base, {"recursive": True}))
+            self.emulate_file(self.selection[0])
+            print(self.AUTORELOADER_PATHS)
+        except:
+            pass
 
     def build(self):
         return EmuInterface()
@@ -582,11 +594,30 @@ class KivyEmu(App):
         else:
             return
 
-    def check(self,dt):
-        print("gi")
-        print(self.built)
+    def callback_for_menu_items(self, *args):
+        toast(args[0])
 
-# app = KivyEmu()
-# Clock.schedule_interval(app.check,3)
+    def show_example_bottom_sheet(self):
+        from kivymd.bottomsheet import MDListBottomSheet
+        if not self.bs_menu_1:
+            self.bs_menu_1 = MDListBottomSheet()
+            self.bs_menu_1.add_item(
+                "Open File",
+                lambda x: self.choose(),
+                icon='file')
+            self.bs_menu_1.add_item(
+                "Open History Tab",
+                lambda x: self.history_screen(),
+                icon='history')
+            self.bs_menu_1.add_item(
+                "Close Emulator",
+                lambda x: self.stop(),
+                icon='window-close')
+        self.bs_menu_1.open()
+
+    def history_screen(self):
+        pass
+
+
 if __name__ == '__main__':
     KivyEmu().run()
