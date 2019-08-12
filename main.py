@@ -3,9 +3,10 @@ import sys
 
 from kivy.storage.jsonstore import JsonStore
 from kivy.uix.button import Button
+from kivy.uix.image import AsyncImage
 from kivy.uix.scrollview import ScrollView
 
-from kivymd.list import MDList
+from kivymd.list import MDList, OneLineAvatarIconListItem, ILeftBody
 
 original_argv = sys.argv
 import traceback
@@ -29,23 +30,43 @@ from kivy.uix.scrollview import ScrollView
 from kivymd.theming import ThemeManager
 from plyer import filechooser
 
-history = JsonStore("history.json")
+
+BASE_DIR = os.path.realpath(__file__)
+json_path = BASE_DIR.split("\\")[:-1]
+history_path = os.path.join("\\".join(json_path), "history.json")
 
 class EmulatorScreen(Screen):
     pass
 
 
+class AvatarSampleWidget(ILeftBody, AsyncImage):
+    pass
 
+
+class HistoryItem(OneLineAvatarIconListItem):
+    def __init_(self,**kwargs):
+        super(HistoryItem,self).__init__(**kwargs)
+
+    def on_press(self):
+        print("yeah",self.text)
+        App.get_running_app().file_name = self.text
+        App.get_running_app().theme_cls.theme_style = 'Light'
+        Window.size = (300, 650)
+        Window.borderless = True
+        App.get_running_app().clear()
+        App.get_running_app().root.ids.screen_manager.current = "emulator_screen"
 
 
 class HistoryScreen(Screen):
     def build_screen(self):
+        history = JsonStore(history_path)
         scrollview = ScrollView(do_scroll_x = False)
         md_list = MDList()
         scrollview.add_widget(md_list)
-        for i in range(1,8):
-            b = Button(text = str(i))
-            md_list.add_widget(b)
+        for i in history.keys():
+            item = HistoryItem(text=str(i))
+            item.add_widget(AvatarSampleWidget(source="./assets/kivy-icon-128.png"))
+            md_list.add_widget(item)
         print("building screen for history")
         self.add_widget(scrollview)
 
@@ -63,6 +84,7 @@ class KivyEmu(App):
     theme_cls = ThemeManager()
     theme_cls.primary_palette = 'Indigo'
     theme_cls.accent_palette = 'Indigo'
+    theme_cls.theme_style = 'Dark'
     Window.size = (300, 650)
     filename = None
     class_name = None
@@ -449,6 +471,13 @@ class KivyEmu(App):
             print(base)
             self.AUTORELOADER_PATHS.clear()
             self.AUTORELOADER_PATHS.append((base, {"recursive": True}))
+
+            history = JsonStore(history_path)
+            if history.exists(self.filename):
+                print("file already exists")
+            else:
+                print('creating a new file with json store')
+                history.put(self.filename,file_name=self.filename)
             self.emulate_file(self.selection[0])
             print(self.AUTORELOADER_PATHS)
         except:
