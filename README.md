@@ -113,8 +113,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 <!-- CONTACT -->
 ## Contact
-
-Your Name - [@kojo_mcroni](https://twitter.com/kojo_mcroni) - joeydanieldarko@gmail.com
+ [@kojo_mcroni](https://twitter.com/kojo_mcroni) - joeydanieldarko@gmail.com
 
 
 
